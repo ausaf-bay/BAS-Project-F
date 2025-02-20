@@ -1,0 +1,330 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 5px;
+  background: white;
+  color: #333;
+  text-align: center;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:30px;
+  background: linear-gradient(to right, #ffffff, #dbeafe);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar button{
+margin-bottom: 20px;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.navbar a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.navbar a:hover {
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 20px;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+
+}
+#btn-signup, .btn-explore, .btn-buy, .btn-sell {
+  padding: 10px 10px 10px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 20px;
+  transition: all 0.10s ease;
+}
+.btn-buy a{
+  
+}
+#btn-signup {
+  background-color:#007bff;
+  color:white;
+}
+#btn-signup:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+  
+}
+.hero {
+  padding: 130px 20px;
+  color: rgb(119, 112, 112); /* Change text color to white for better contrast */
+  font-size: 20px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in-out;
+  background-image: url('../Assetes/BackgroundHome.png'); /* Add your image URL here */
+  background-size: cover; /* Ensures the image covers the whole section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents image repetition */
+  margin-bottom: 20px;
+}
+
+.hero h1{
+  color: #007bff;
+  font-size: 50px;
+}
+.btn-buys{
+  margin: 40px 0 40px 0;
+  width: 200px;
+  height: 70px;
+  background-color: #2563eb;
+  color: white;
+}
+.btn-explore {
+  margin: 40px 0 40px 0;
+  width: 200px;
+  height: 70px;
+  background-color: #2563eb;
+  color: white;
+}
+.btn-explore:hover {
+  background-color: #1e40af;
+  transform: scale(1.1);
+}
+.how-it-works, .join-community, .benefits {
+  padding: 80px 20px;
+  background: #F8F8F8;
+  margin: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.how-it-works h2{
+  color: #007bff;
+  font-size: 30px;
+}
+
+/* General Styles */
+.container {
+  max-width:100%;
+  margin: 0 auto;
+  background-color: whitesmoke;
+  padding: 20px;
+  text-align:center;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff; /* Primary color */
+  margin-bottom: 40px;
+}
+
+.step-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.step-number {
+  flex: 0 0 25%; /* 25% width */
+  text-align: left;
+}
+
+.step-number h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.step-description {
+  flex: 0 0 55%; /* 55% width */
+  text-align: left;
+}
+
+.step-description p {
+  font-size: 1.25rem;
+  max-width: 600px;
+
+  color: #6c757d; /* Muted text color */
+  margin-left: 100px;
+}
+
+.step-icon {
+  flex: 0 0 20%; /* 20% width */
+  text-align: center;
+}
+
+.icon-hover {
+  width: 50px;
+  transition: transform 0.3s ease;
+}
+
+.icon-hover:hover {
+  transform: scale(1.1); /* Hover effect */
+}
+/* General Section Styles */
+
+
+.join-community h2 {
+
+  color:#007bff;
+  margin-bottom: 80px;
+}
+
+.join-community p {
+  font-size: 1.25rem;
+  font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+  font: bold;
+  margin: 30px;
+  margin-bottom: 20px;
+}
+
+/* Buy Button Styles */
+.btn-buy {
+  font-family: 'Arial', sans-serif;
+  font-size: 2.25rem;
+  font-weight: bold;
+  width: 250px;
+  color: #fff;
+  background-color: #28a745; /* Green color for Buy */
+  border: none;
+  padding: 10px 20px;
+  margin: 0px 50px 0px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-buy:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Sell Button Styles */
+.btn-sell {
+  font-family: 'Arial', sans-serif;
+  font-size: 2.25rem;
+  font-weight: bold;
+  width: 250px;
+  color: #fff;
+  background-color: #dc3545; /* Red color for Sell */
+  border: none;
+  padding: 10px 20px;
+  margin: 0px 50px 0px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-sell:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+.arrow-icon {
+  font-size: 1.5rem;
+  color: #007bff; /* Primary color */
+  position: absolute;
+  right: -20px; /* Position the arrow to the right of the icon */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Bottom Text Styles */
+.buttomin-readyto {
+  font-size: 1rem;
+  font-family: 'Verdana', sans-serif; /* Modern sans-serif font */
+  color: #777;
+  line-height: 1.6;
+  margin-top: 20px;
+}
+.benefits ul {
+  list-style: none;
+  padding: 0;
+}
+.benefits li {
+  margin: 10px 0;
+  font-size: 18px;
+}
+.btn-buy {
+  background-color: #2563eb;
+  color: white;
+}
+.btn-buy:hover {
+  background-color: #1e40af;
+}
+.btn-sell {
+  background-color: #22c55e;
+  color: white;
+}
+.btn-sell:hover {
+  background-color: #16a34a;
+}
+/* General Footer Styling */
+footer {
+  padding: 20px;
+  background: #d8d8db;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Copyright Text */
+.copyright {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Links Styling */
+.links {
+  margin-bottom: 15px;
+}
+
+.links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 10px 10px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Social Media Styling */
+.social-media {
+  margin-top: 10px;
+}
+
+.social-media p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.icons{
+  color: #007bff;
+  text-decoration: none;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.icons i{
+  padding: 10px;
+}
+
+.icons i:hover {
+  color: #0056b3;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

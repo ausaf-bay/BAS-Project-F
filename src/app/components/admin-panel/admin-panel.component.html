@@ -1,0 +1,385 @@
+ <div class="container">
+  <h1>Admin Panel</h1>
+  <div class="upload-container">
+    <button  class="upload-button">
+      <a [href]="'/buyer-actions/'" target="_blank">Buyer-Actions</a>
+    </button>
+    <h2>Upload Excel File</h2>
+  
+    <input
+      type="file"
+      accept=".xlsx, .xls"
+      (change)="onFileSelected($event)"
+      class="file-input"
+    />
+  
+    <button (click)="uploadFile()" class="upload-button">
+      Upload
+    </button>
+    
+    
+    <p *ngIf="uploadStatus" class="upload-status">{{ uploadStatus }}</p>
+  </div>
+  
+ 
+  <div *ngIf="message" class="alert alert-success">{{ message }}</div>
+
+   Filters 
+  <div class="filters mb-3">
+    <h4>Filters</h4>
+    <label>
+      Email:
+      <input class="form-control" [(ngModel)]="filter.email" placeholder="Filter by email" />
+    </label>
+    <label>
+      Verified:
+      <select class="form-control" [(ngModel)]="filter.verified">
+        <option value="">All</option>
+        <option value="true">Verified</option>
+        <option value="false">Unverified</option>
+      </select>
+    </label>
+    <label>
+      Important:
+      <select class="form-control" [(ngModel)]="filter.important">
+        <option value="">All</option>
+        <option value="true">Important</option>
+        <option value="false">Not Important</option>
+      </select>
+    </label>
+    <button class="btn btn-primary mt-2" (click)="applyFilters()">Apply Filters</button>
+    <button class="btn btn-secondary mt-2" (click)="resetFilters()">Reset Filters</button>
+  </div>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Primary Technology</th>
+        <th>Price Expectation</th>
+        <th>Important</th>
+        <th>Verified</th>
+        <th>Additional Notes</th>
+        <th>Patent Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let seller of filteredData">
+        <td>{{ seller.id }}</td>
+        <td>{{ seller.first_name }}</td>
+        <td>{{ seller.last_name }}</td>
+        <td>{{ seller.email }}</td>
+        <td>{{ seller.phone }}</td>
+        <td>{{ seller.country }}</td>
+        <td>{{ seller.city }}</td>
+        <td>{{ seller.primary_technology }}</td>
+        <td>{{ seller.price_expectation }}</td>
+        <td>{{ seller.important ? 'Yes' : 'No' }}</td>
+        <td>{{ seller.verified ? 'Yes' : 'No' }}</td>
+        <td>{{ seller.additional_notes || 'N/A' }}</td>
+        <td>{{ seller.patent_number }}</td>
+        <td>
+          <button class="btn btn-info" (click)="viewFeedbackDetails(seller)">
+            View Feedback
+          </button>
+        </td>
+        <td>
+          
+          <button
+            class="btn btn-primary"
+            *ngIf="!seller.verified"
+            (click)="openVerificationForm(seller)"
+          >
+            Verify
+          </button>
+          <button
+            class="btn btn-danger"
+            *ngIf="seller.verified"
+            (click)="unverifySeller(seller)"
+          >
+            Unverify
+          </button>
+        </td>
+        <td><input
+          type="file"
+          accept=".xlsx, .xls"
+          (change)="onFileSelected($event)"
+          class="file-input"
+        />
+      
+        <button (click)="uploadFile()" class="upload-button">
+          Upload
+        </button>
+        
+         
+        <p *ngIf="uploadStatus" class="upload-status">{{ uploadStatus }}</p>
+        
+      
+     
+      <div *ngIf="message" class="alert alert-success">{{ message }}</div></td>
+      <a [href]="'/buyer-actions/'" target="_blank">Buyer Data</a>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="selectedFeedback" class="feedback-modal">
+    <h3>Feedback for Patent ID: {{ selectedFeedback.id }}</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Buyer Email</th>
+          <th>Buyer Name</th>
+          <th>Action</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of selectedFeedback.feedback_details">
+          <td>{{ feedback.email }}</td>
+          <td>{{ feedback.first_name }} {{ feedback.last_name }}</td>
+          <td>{{ feedback.action }}</td>
+          <td>{{ feedback.timestamp | date: 'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-secondary" (click)="selectedFeedback = null">Close</button>
+  </div>
+
+  <div *ngIf="selectedSeller" class="verification-form mt-4">
+    <h3>Verify Seller: {{ selectedSeller.first_name }} {{ selectedSeller.last_name }}</h3>
+    <label>
+      Important:
+      <input type="checkbox" [(ngModel)]="important" />
+    </label>
+    <br />
+    <label>
+      Additional Notes:
+      <textarea class="form-control" [(ngModel)]="additionalNotes"></textarea>
+    </label>
+    <!-- Entity Status -->
+  <label>
+    Entity Status:
+    <select class="form-control" [(ngModel)]="entityStatus">
+      <option value="micro">Micro</option>
+      <option value="small">Small</option>
+      <option value="large">Large</option>
+    </select>
+  </label>
+  <br />
+
+  <!-- Acquisition Status -->
+  <label>
+    Acquisition Status:
+    <select class="form-control" [(ngModel)]="acquisitionStatus">
+      <option value="open">Open</option>
+      <option value="closed">Closed</option>
+    </select>
+  </label>
+  <br />
+
+  <!-- Bay Rating -->
+  <label>
+    Bay Rating:
+    <select class="form-control" [(ngModel)]="bayRating">
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+  </label>
+  <br />
+
+  <!-- Enforceability -->
+  <label>
+    Enforceability:
+    <select class="form-control" [(ngModel)]="enforceability">
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+  </label>
+  <br />
+
+  <!-- Target -->
+  <label>
+    Target:
+    <input type="text" class="form-control" [(ngModel)]="target" />
+  </label>
+  <br />
+
+  <!-- Company Name -->
+  <label>
+    Company Name:
+    <input type="text" class="form-control" [(ngModel)]="companyName" />
+  </label>
+  <br />
+
+  <!-- Admin Contact -->
+  <label>
+    Admin Contact:
+    <input type="text" class="form-control" [(ngModel)]="adminContact" />
+  </label>
+  <br />
+
+  <!-- Admin Email -->
+  <label>
+    Admin Email:
+    <input type="email" class="form-control" [(ngModel)]="adminEmail" />
+  </label>
+  <br />
+
+  <!-- Upcoming Fees -->
+  <label>
+    Upcoming Fees:
+    <textarea class="form-control" [(ngModel)]="upcomingFees"></textarea>
+  </label>
+  <br />
+
+  <!-- Title -->
+  <label>
+    Title:
+    <input type="text" class="form-control" [(ngModel)]="title" />
+  </label>
+  <br />
+
+  <!-- Abstract -->
+  <label>
+    Abstract:
+    <textarea class="form-control" [(ngModel)]="abstract"></textarea>
+  </label>
+  <br />
+
+  <!-- First Claim -->
+  <label>
+    First Claim:
+    <textarea class="form-control" [(ngModel)]="firstClaim"></textarea>
+  </label>
+  <br />
+
+  <!-- Filing Date -->
+  <label>
+    Filing Date:
+    <input type="date" class="form-control" [(ngModel)]="filingDate" />
+  </label>
+  <br />
+
+  <!-- Grant Date -->
+  <label>
+    Grant Date:
+    <input type="date" class="form-control" [(ngModel)]="grantDate" />
+  </label>
+  <br />
+
+  <!-- Current Assignee -->
+  <label>
+    Current Assignee:
+    <input type="text" class="form-control" [(ngModel)]="currentAssignee" />
+  </label>
+  <br />
+
+  <!-- IP Type -->
+  <label>
+    IP Type:
+    <input type="text" class="form-control" [(ngModel)]="ipType" />
+  </label>
+  <br />
+
+  <!-- Family Members -->
+  <label>
+    Family Members:
+    <select class="form-control" [(ngModel)]="familyMembers">
+      <option value="single">Single</option>
+      <option value="family">Family</option>
+    </select>
+  </label>
+  <br />
+
+  <!-- Concepts -->
+  <label>
+    Concepts:
+    <textarea class="form-control" [(ngModel)]="concepts"></textarea>
+  </label>
+  <br />
+
+  <!-- Keywords -->
+  <label>
+    Keywords:
+    <textarea class="form-control" [(ngModel)]="keywords"></textarea>
+  </label>
+  <br />
+
+  <!-- Technologies -->
+  <label>
+    Technologies:
+    <textarea class="form-control" [(ngModel)]="technologies"></textarea>
+  </label>
+  <br />
+    <br />
+    <button class="btn btn-success mt-2" (click)="verifySeller()">Submit Verification</button>
+    <button class="btn btn-secondary mt-2" (click)="selectedSeller = null">Cancel</button>
+  </div>
+</div>
+
+
+
+
+ 
+<!--  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Feedback</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let seller of filteredData">
+      <td>{{ seller.id }}</td>
+      <td>{{ seller.first_name }}</td>
+      <td>{{ seller.last_name }}</td>
+      <td>{{ seller.email }}</td>
+      <td>
+        <button class="btn btn-info" (click)="viewFeedbackDetails(seller)">
+          View Feedback
+        </button>
+      </td>
+      <td>
+        <button *ngIf="!seller.verified" class="btn btn-primary" (click)="openVerificationForm(seller)">Verify</button>
+        <button *ngIf="seller.verified" class="btn btn-danger" (click)="unverifySeller(seller)">Unverify</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selectedFeedback" class="feedback-modal">
+  <h3>Feedback for Patent ID: {{ selectedFeedback.id }}</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Buyer Email</th>
+        <th>Buyer Name</th>
+        <th>Action</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feedback of selectedFeedback.feedback_details">
+        <td>{{ feedback.email }}</td>
+        <td>{{ feedback.first_name }} {{ feedback.last_name }}</td>
+        <td>{{ feedback.action }}</td>
+        <td>{{ feedback.timestamp | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-secondary" (click)="selectedFeedback = null">Close</button>
+</div>
+ -->

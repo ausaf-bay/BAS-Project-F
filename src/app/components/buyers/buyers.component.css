@@ -1,0 +1,250 @@
+/* General Styles */
+/* body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+.filter-container {
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+button[type="button"] {
+  grid-column: 1 / -1;
+}
+
+
+.buyer-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buyer-card {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.buyer-card h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.buyer-card p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #555;
+}
+
+.buyer-card a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.buyer-card a:hover {
+  text-decoration: underline;
+}
+
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.actions label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.actions input[type="radio"] {
+  margin-right: 5px;
+}
+
+.submit-section {
+  margin-top: 10px;
+}
+
+
+.resubmit-message {
+  margin-top: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+}
+
+.resubmit-message button {
+  background-color: #d9534f;
+  margin-top: 10px;
+}
+
+.resubmit-message button:hover {
+  background-color: #c9302c;
+}
+
+
+.no-data {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .filter-form {
+    grid-template-columns: 1fr;
+  }
+
+  input, select, button {
+    font-size: 14px;
+  }
+
+  .buyer-card {
+    padding: 10px;
+  }
+}
+ */
+ /* General Page Layout */
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  background: #f4f4f4;
+  border-right: 2px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filter-btn {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.filter-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Main Content */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Table Styling */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.data-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Buying Options */
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

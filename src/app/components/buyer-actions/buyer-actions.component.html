@@ -1,0 +1,30 @@
+<!-- Filters Section -->
+<div class="filters">
+    <input type="text" [(ngModel)]="emailFilter" (input)="applyFilters()" placeholder="Filter by Email" class="form-control" />
+    
+    <input type="text" [(ngModel)]="actionFilter" (input)="applyFilters()" placeholder="Filter by Action" class="form-control" />
+    <input type="text" [(ngModel)]="patentFilter" (input)="applyFilters()" placeholder="Filter by Patent" class="form-control" />
+    <input type="date" [(ngModel)]="dateFrom" (change)="applyFilters()" class="form-control" />
+    <input type="date" [(ngModel)]="dateTo" (change)="applyFilters()" class="form-control" />
+  </div>
+  
+  <!-- Buyer Details Table -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Buyer Email</th>
+        <th>Patent Number</th>
+        <th>Action</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feedback of filteredActions">
+        <td>{{ feedback.buyer_email }}</td>
+        <td>{{ feedback.patent_number }}</td>
+        <td>{{ feedback.action }}</td>
+        <td>{{ feedback.timestamp | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -1,0 +1,20 @@
+<div class="container custom-border mt-5 signup-container forgot-form">
+    <div class="row justify-content-center">
+      <div class="col-md-8 gap-lg-5">
+      <h1 class="text-center ">Forgot Password</h1>
+      <form id="enterOTP">
+        <div class="col-md-12 mb-lg-4 text-center">
+          <label for="otp" class="text-center mt-lg-3 mb-lg-5">Enter OTP</label>
+          <div class="otp-input-group">
+            <!-- Individual OTP input boxes -->
+            <input type="text" id="otp1" class="otp-input" maxlength="1" />
+            <input type="text" id="otp2" class="otp-input" maxlength="1" />
+            <input type="text" id="otp3" class="otp-input" maxlength="1" />
+            <input type="text" id="otp4" class="otp-input" maxlength="1" />
+          </div>
+        </div>
+        <button type="submit" (click)="verifyOTP()">Submit</button>
+      </form>
+      </div>
+    </div>
+  </div>
